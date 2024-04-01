@@ -9,6 +9,8 @@ function App() {
     const [startValue, setStartValue] = useState(0)
     const [btnStatus, setBtnStatus] = useState<boolean>(false);
 
+    console.log(startValue)
+
     return (
         <div className={'appWrapper'}>
             <div className={'container'}>
@@ -23,7 +25,9 @@ function App() {
                 <div>
                     <Counter
                         maxValue={maxValue}
+                        setMaxValue={setMaxValue}
                         startValue={startValue}
+                        setStartValue={setStartValue}
                         btnStatus={btnStatus}
                         setBtnStatus={setBtnStatus}
                     />

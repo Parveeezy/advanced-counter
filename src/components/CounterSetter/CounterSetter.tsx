@@ -28,8 +28,8 @@ export const CounterSetter = (props: CounterSetterPropsType) => {
     const setValuesHandler = () => {
         props.setMaxValue(valueMax);
         props.setStartValue(valueStart);
-        setValueMax(0);
-        setValueStart(0)
+        // setValueMax(0);
+        // setValueStart(0)
         props.setBtnStatus(true)
     }
 
