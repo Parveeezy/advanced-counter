@@ -7,20 +7,25 @@ function App() {
 
     const [maxValue, setMaxValue] = useState(0);
     const [startValue, setStartValue] = useState(0)
+    const [btnStatus, setBtnStatus] = useState<boolean>(false);
 
     return (
         <div className={'appWrapper'}>
             <div className={'container'}>
                 <div>
-                    {/*<CounterSetter*/}
-                    {/*    setMaxValue={setMaxValue}*/}
-                    {/*    setStartValue={setStartValue}*/}
-                    {/*/>*/}
+                    <CounterSetter
+                        setMaxValue={setMaxValue}
+                        setStartValue={setStartValue}
+                        btnStatus={btnStatus}
+                        setBtnStatus={setBtnStatus}
+                    />
                 </div>
                 <div>
                     <Counter
                         maxValue={maxValue}
                         startValue={startValue}
+                        btnStatus={btnStatus}
+                        setBtnStatus={setBtnStatus}
                     />
                 </div>
             </div>

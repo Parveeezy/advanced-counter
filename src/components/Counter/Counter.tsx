@@ -2,16 +2,23 @@ import React, {useState} from 'react';
 import {Button} from "../Button/Button";
 import s from './counter.module.css'
 
-export const Counter = () => {
+type CounterPropsType = {
+    maxValue: number
+    startValue: number
+    btnStatus: boolean
+    setBtnStatus: (val: boolean) => void
+}
 
-    const defaultValue = 0;
-    const maxValue = 5;
+export const Counter = (props: CounterPropsType) => {
+
+    const defaultValue = props.startValue;
+    const maxValue = props.maxValue;
 
     const [counter, setCounter] = useState<number>(defaultValue);
 
     const increment = () => {
-        if(counter < maxValue) {
-            setCounter((prev)=> prev + 1)
+        if (counter < maxValue) {
+            setCounter((prev) => prev + 1)
         }
     }
 
