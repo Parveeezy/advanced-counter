@@ -1,7 +1,7 @@
 .wrapper {
     border: 3px solid aqua;
     border-radius: 5px;
-    max-width: 280px;
+    max-width: 320px;
     height: 150px;
     display: flex;
     justify-content: center;
@@ -26,13 +26,15 @@
 
 .title {
     font-weight: 600;
-    font-size: 16px;
+    font-size: 18px;
     color: aqua;
 }
 
 .input {
     border-radius: 5px;
     border: 2px solid aqua;
+    text-align: center;
+    margin-left: 5px;
 }
 
 
