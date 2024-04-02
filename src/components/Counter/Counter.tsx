@@ -16,14 +16,11 @@ export const Counter = (props: CounterPropsType) => {
     const defaultValue = props.startValue;
     const maxValue = props.maxValue;
 
-
-
-
     const [counter, setCounter] = useState<number>(defaultValue);
 
     useEffect(() => {
         setCounter(props.startValue)
-    }, [counter])
+    }, [props.startValue])
 
     const increment = () => {
         if (counter < maxValue) {
@@ -35,16 +32,30 @@ export const Counter = (props: CounterPropsType) => {
         setCounter(0)
         props.setMaxValue(0)
         props.setStartValue(0)
+        props.setBtnStatus(false)
     }
 
     return (
         <div className={s.wrapper}>
-            <div
-                className={s.counter}
-                style={counter === maxValue ? {color: 'red'} : {}}
-            >
-                {counter}
-            </div>
+            {(maxValue === defaultValue)
+                ? (
+                    <div
+                        className={s.error}
+                        style={counter === maxValue || props.startValue > props.maxValue
+                            ? {color: 'red'} : {}}
+                    >
+                        Введите правильные значения!
+                    </div>
+                ) : (
+                <div
+                    className={s.counter}
+                    style={counter === maxValue || props.startValue > props.maxValue
+                        ? {color: 'red'} : {}}
+                >
+                    {counter}
+                </div>
+            )}
+
             <div className={s.buttons_wrapper}>
                 {counter !== maxValue ? (
                     <Button

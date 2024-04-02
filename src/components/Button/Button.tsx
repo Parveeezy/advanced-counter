@@ -35,7 +35,7 @@ export const Button = (props: ButtonPropsType) => {
             <button
                 onClick={props.callBack}
                 disabled={props.disabled}
-                // style={!!props.disabled ? enable : disable}
+                style={props.disabled ? disable : enable}
             >{props.name}</button>
         );
     }

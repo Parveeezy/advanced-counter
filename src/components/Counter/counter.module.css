@@ -32,3 +32,17 @@
     width: 245px;
     margin-top: 5px;
 }
+
+.error {
+    width: 250px;
+    background-color: aqua;
+    height: 70px;
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    border: 2px solid crimson;
+    text-align: center;
+}

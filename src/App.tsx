@@ -9,14 +9,14 @@ function App() {
     const [startValue, setStartValue] = useState(0)
     const [btnStatus, setBtnStatus] = useState<boolean>(false);
 
-    console.log(startValue)
-
     return (
         <div className={'appWrapper'}>
             <div className={'container'}>
                 <div>
                     <CounterSetter
+                        maxValue={maxValue}
                         setMaxValue={setMaxValue}
+                        startValue={startValue}
                         setStartValue={setStartValue}
                         btnStatus={btnStatus}
                         setBtnStatus={setBtnStatus}
