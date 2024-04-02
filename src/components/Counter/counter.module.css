@@ -1,24 +1,24 @@
 .wrapper {
-    border: 3px solid aqua;
-    border-radius: 5px;
-    max-width: 280px;
-    height: 150px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    max-width: 280px;
+    height: 150px;
     padding: 40px;
+    border: 3px solid aqua;
+    border-radius: 5px;
 }
 
 .counter {
-    width: 250px;
-    background-color: aqua;
-    height: 70px;
-    font-size: 46px;
-    font-weight: bold;
     display: flex;
     justify-content: center;
     align-items: center;
+    max-width: 250px;
+    height: 70px;
+    background-color: aqua;
+    font-size: 46px;
+    font-weight: bold;
     border-radius: 5px;
 }
 
@@ -26,23 +26,23 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
+    width: 245px;
     height: 40px;
+    margin-top: 5px;
     border: 3px solid aqua;
     border-radius: 5px;
-    width: 245px;
-    margin-top: 5px;
 }
 
 .error {
-    width: 250px;
-    background-color: aqua;
-    height: 70px;
-    font-size: 18px;
-    font-weight: bold;
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 250px;
+    height: 70px;
+    background-color: aqua;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
     border-radius: 5px;
     border: 2px solid crimson;
-    text-align: center;
 }
