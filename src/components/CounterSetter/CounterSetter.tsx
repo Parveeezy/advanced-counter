@@ -1,38 +1,43 @@
-import React, {ChangeEvent, useEffect} from 'react';
+import React, {ChangeEvent, useEffect, useState} from 'react';
 import s from './counterSetter.module.css'
 import {Button} from "../Button/Button";
+import {useAppDispatch, useAppSelector} from "../../redux/hooks/hooks";
+import {maxValueAC, startValueAC} from "../../redux/actionCreators/actionCreator";
 
 type CounterSetterPropsType = {
-    maxValue: number
-    setMaxValue: (e: number) => void
-    startValue: number
-    setStartValue: (e: number) => void
     btnStatus: boolean
     setBtnStatus: (val: boolean) => void
 }
 
 export const CounterSetter = (props: CounterSetterPropsType) => {
 
+    const maxValue = useAppSelector(state => state.counter.max)
+    const startValue = useAppSelector(state => state.counter?.start)
+    const dispatch = useAppDispatch()
+
     useEffect(() => {
-        if (props.maxValue === 0 && props.startValue === 0) {
+        if (maxValue === 0 && startValue === 0) {
             props.setBtnStatus(false)
         }
-    }, [props.maxValue, props.startValue])
+        setStart(startValue)
+    }, [maxValue, props, startValue])
+
+    let [start, setStart] = useState(0);
 
     const onChangeMaxValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
         Number(e.currentTarget.value) >= 0 &&
-        props.setMaxValue(Number(e.currentTarget.value))
+        dispatch(maxValueAC(Number(e.currentTarget.value)))
     }
 
     const onChangeStartValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
         Number(e.currentTarget.value) >= 0 &&
-            props.setStartValue(Number(e.currentTarget.value))
+        setStart(Number(e.currentTarget.value))
     }
-    
+
     const setValuesHandler = () => {
-        if(props.maxValue > props.startValue) {
-            props.setMaxValue(props.maxValue);
-            props.setStartValue(props.startValue);
+        if (maxValue > startValue) {
+            dispatch(maxValueAC(maxValue))
+            dispatch(startValueAC(start))
             props.setBtnStatus(true)
         }
     }
@@ -45,8 +50,8 @@ export const CounterSetter = (props: CounterSetterPropsType) => {
                     <input
                         className={s.input}
                         onChange={onChangeMaxValueHandler}
-                        value={props.maxValue}
-                        style={props.maxValue <= props.startValue ? {borderColor: 'red'} : {}}
+                        value={maxValue}
+                        style={maxValue <= startValue ? {borderColor: 'red'} : {}}
                     />
                 </div>
                 <div className={s.valuesBlock}>
@@ -54,8 +59,8 @@ export const CounterSetter = (props: CounterSetterPropsType) => {
                     <input
                         className={s.input}
                         onChange={onChangeStartValueHandler}
-                        value={props.startValue}
-                        style={props.maxValue <= props.startValue ? {borderColor: 'red'} : {}}
+                        value={start}
+                        style={maxValue <= startValue ? {borderColor: 'red'} : {}}
                     />
                 </div>
             </div>

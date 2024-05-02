@@ -1,37 +1,34 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {Button} from "../Button/Button";
 import s from './counter.module.css'
+import {useAppDispatch, useAppSelector} from "../../redux/hooks/hooks";
+import {incrementAC, maxValueAC, resetAC, startValueAC} from "../../redux/actionCreators/actionCreator";
 
 type CounterPropsType = {
-    maxValue: number
-    setMaxValue: (val: number) => void
-    startValue: number
-    setStartValue: (val: number) => void
     btnStatus: boolean
     setBtnStatus: (val: boolean) => void
 }
 
 export const Counter = (props: CounterPropsType) => {
 
-    const defaultValue = props.startValue;
-    const maxValue = props.maxValue;
+    const counter = useAppSelector((state) => state.counter.num)
+    const maxValue = useAppSelector((state) => state.counter.max)
+    const startValue = useAppSelector((state) => state.counter.start)
 
-    const [counter, setCounter] = useState<number>(defaultValue);
+    const dispatch = useAppDispatch()
 
-    useEffect(() => {
-        setCounter(props.startValue)
-    }, [props.startValue])
+    const defaultValue = startValue;
 
     const increment = () => {
         if (counter < maxValue) {
-            setCounter((prev) => prev + 1)
+        dispatch(incrementAC())
         }
     }
 
     const resetCounter = () => {
-        setCounter(0)
-        props.setMaxValue(0)
-        props.setStartValue(0)
+        dispatch(resetAC())
+        dispatch(maxValueAC(0))
+        dispatch(startValueAC(0))
         props.setBtnStatus(false)
     }
 
@@ -41,7 +38,7 @@ export const Counter = (props: CounterPropsType) => {
                 ? (
                     <div
                         className={s.error}
-                        style={counter === maxValue || props.startValue > props.maxValue
+                        style={counter === maxValue || startValue > maxValue
                             ? {color: 'red'} : {}}
                     >
                         Введите правильные значения!
@@ -49,7 +46,7 @@ export const Counter = (props: CounterPropsType) => {
                 ) : (
                 <div
                     className={s.counter}
-                    style={counter === maxValue || props.startValue > props.maxValue
+                    style={counter === maxValue || startValue > maxValue
                         ? {color: 'red'} : {}}
                 >
                     {counter}
