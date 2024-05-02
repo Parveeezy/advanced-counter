@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import {Button} from "../Button/Button";
 import s from './counter.module.css'
+import {useAppDispatch, useAppSelector} from "../../redux/hooks/hooks";
+import {incrementAC, resetAC} from "../../redux/actionCreators/actionCreator";
 
 type CounterPropsType = {
     maxValue: number
@@ -13,29 +15,32 @@ type CounterPropsType = {
 
 export const Counter = (props: CounterPropsType) => {
 
+    const dispatch = useAppDispatch()
+
     const defaultValue = props.startValue;
     const maxValue = props.maxValue;
 
+    const counter = useAppSelector((state) => state.counter.num)
 
-
-
-    const [counter, setCounter] = useState<number>(defaultValue);
-
-    useEffect(() => {
-        setCounter(props.startValue)
-    }, [counter])
+    // useEffect(() => {
+    //     setCounter(props.startValue)
+    // }, [counter])
 
     const increment = () => {
         if (counter < maxValue) {
-            setCounter((prev) => prev + 1)
+        dispatch(incrementAC())
         }
+
     }
 
     const resetCounter = () => {
-        setCounter(0)
+        dispatch(resetAC())
         props.setMaxValue(0)
         props.setStartValue(0)
+
     }
+
+    console.log(counter)
 
     return (
         <div className={s.wrapper}>
